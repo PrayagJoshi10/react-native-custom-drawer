@@ -1,9 +1,10 @@
-import {StyleSheet, View} from 'react-native';
+import {Image, Pressable, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import UserDetails from './UserDetails';
+import CustomDrawerItem from './CustomDrawerItem';
 
-const CustomDrawerContent = ({navigation}) => {
+const CustomDrawerContent = ({navigation}: any) => {
   return (
     <DrawerContentScrollView
       scrollEnabled={true}
@@ -14,7 +15,40 @@ const CustomDrawerContent = ({navigation}) => {
         {/* sepetator */}
         <View style={styles.seperator} />
         {/* drawerItems */}
+        <View style={styles.DrawerItemsContainer}>
+          <CustomDrawerItem
+            label={'Add Item'}
+            icon={require('../assets/more.png')}
+          />
+          <CustomDrawerItem
+            label={'View Items'}
+            icon={require('../assets/page.png')}
+          />
+          <CustomDrawerItem
+            label={'Analytics'}
+            icon={require('../assets/graph.png')}
+          />
+          <CustomDrawerItem
+            label={'Tickets'}
+            icon={require('../assets/ticket.png')}
+          />
+          <CustomDrawerItem
+            label={'Logout'}
+            icon={require('../assets/exit.png')}
+          />
+        </View>
         {/* closeButton */}
+        <View style={styles.closeButtonContainer}>
+          <Pressable
+            style={styles.closeButton}
+            onPress={() => navigation.closeDrawer()}>
+            <Image
+              source={require('../assets/cross.png')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </Pressable>
+        </View>
       </View>
     </DrawerContentScrollView>
   );
@@ -35,5 +69,22 @@ const styles = StyleSheet.create({
   },
   DrawerItemsContainer: {
     flex: 1,
+  },
+  closeButtonContainer: {
+    flexDirection: 'row',
+    marginBottom: 25,
+  },
+  closeButton: {
+    backgroundColor: '#ffffff',
+    padding: 5,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 50,
+  },
+  icon: {
+    height: 15,
+    width: 15,
   },
 });
