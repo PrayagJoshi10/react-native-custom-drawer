@@ -1,10 +1,23 @@
-import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Header from '../components/Header';
+import {useDrawerProgress} from '@react-navigation/drawer';
+import Animated, {interpolate, useAnimatedStyle} from 'react-native-reanimated';
 
 const HomeScreen = ({navigation}: any) => {
+  const drawerProgress = useDrawerProgress();
+
+  const viewStyle = useAnimatedStyle(() => {
+    const scale = interpolate(drawerProgress.value, [0, 1], [1, 0.8]);
+    const borderRadius = interpolate(drawerProgress.value, [0, 1], [0, 40]);
+    return {
+      transform: [{scale}],
+      borderRadius,
+    };
+  });
+
   return (
-    <SafeAreaView style={styles.container}>
+    <Animated.View style={[styles.container, viewStyle]}>
       <Header onPress={() => navigation.openDrawer()} />
       <View style={styles.contentContainer}>
         <View style={styles.textContainer}>
@@ -18,7 +31,7 @@ const HomeScreen = ({navigation}: any) => {
         </View>
         <Image source={require('../assets/rope.png')} style={styles.image} />
       </View>
-    </SafeAreaView>
+    </Animated.View>
   );
 };
 
@@ -28,6 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    paddingTop: 25,
   },
   contentContainer: {
     flex: 1,

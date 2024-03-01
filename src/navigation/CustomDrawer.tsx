@@ -15,7 +15,7 @@ const CustomDrawer = () => {
           overlayColor: 'transparent',
           drawerStyle: {
             flex: 1,
-            width: '65%',
+            width: '55%',
             paddingRight: 20,
             backgroundColor: 'transparent',
           },
