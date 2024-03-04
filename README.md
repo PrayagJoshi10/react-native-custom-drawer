@@ -2,7 +2,7 @@
 
 This React Native demo app showcases how to implement custom drawer navigation with animation using React Navigation and Reanimated libraries. The custom drawer navigation enhances the user experience by providing fluid animations and a seamless navigation experience.
 
-![Drawer Animations Demo](./DrawerAnimation.gif)
+<img src="./DrawerAnimation.gif" alt="StyleChange GIF" height="500" width="250">
 
 ## Features
 
